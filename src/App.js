@@ -13,6 +13,11 @@ import {
   Subtitle,
   LineChart,
 } from "@tremor/react";
+import CssBaseline from "@mui/material/CssBaseline";
+
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
+
 const lineChartdata = [
   {
     year: 1951,
@@ -88,57 +93,61 @@ const dataFormatter = (number) => {
 };
 function App() {
   return (
-    <div className="App">
-      <Card maxWidth="max-w-sm">
-        <Text>Sales</Text>
-        <Metric>$ 71,465</Metric>
-        <Flex marginTop="mt-4">
-          <Text>32% of annual target</Text>
-          <Text>$ 225,000</Text>
-        </Flex>
-        <ProgressBar percentageValue={32} marginTop="mt-2" />
-      </Card>
-      <Card>
-        <Title>Newsletter revenue over time (USD)</Title>
-        <AreaChart
-          data={chartdata}
-          categories={["SemiAnalysis", "The Pragmatic Engineer"]}
-          dataKey="date"
-          height="h-72"
-          colors={["indigo", "cyan"]}
-          valueFormatter={dataFormatter}
-          marginTop="mt-4"
-        />
-      </Card>
-      <Card>
-        <Title>Number of species threatened with extinction (2021)</Title>
-        <Subtitle>
-          The IUCN Red List has assessed only a small share of the total known
-          species in the world.
-        </Subtitle>
-        <BarChart
-          data={barChartdata}
-          dataKey="name"
-          categories={["Number of threatened species"]}
-          colors={["blue"]}
-          valueFormatter={dataFormatter}
-          marginTop="mt-6"
-          yAxisWidth="w-12"
-        />
-      </Card>
-      <Card>
-        <Title>Population growth rate (1951 to 2021)</Title>
-        <LineChart
-          data={lineChartdata}
-          dataKey="year"
-          categories={["Population growth rate"]}
-          colors={["blue"]}
-          valueFormatter={dataFormatter}
-          marginTop="mt-6"
-          yAxisWidth="w-10"
-        />
-      </Card>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+
+      <div className="App">
+        <Card maxWidth="max-w-sm">
+          <Text>Sales</Text>
+          <Metric>$ 71,465</Metric>
+          <Flex marginTop="mt-4">
+            <Text>32% of annual target</Text>
+            <Text>$ 225,000</Text>
+          </Flex>
+          <ProgressBar percentageValue={32} marginTop="mt-2" />
+        </Card>
+        <Card>
+          <Title>Newsletter revenue over time (USD)</Title>
+          <AreaChart
+            data={chartdata}
+            categories={["SemiAnalysis", "The Pragmatic Engineer"]}
+            dataKey="date"
+            height="h-72"
+            colors={["indigo", "cyan"]}
+            valueFormatter={dataFormatter}
+            marginTop="mt-4"
+          />
+        </Card>
+        <Card>
+          <Title>Number of species threatened with extinction (2021)</Title>
+          <Subtitle>
+            The IUCN Red List has assessed only a small share of the total known
+            species in the world.
+          </Subtitle>
+          <BarChart
+            data={barChartdata}
+            dataKey="name"
+            categories={["Number of threatened species"]}
+            colors={["blue"]}
+            valueFormatter={dataFormatter}
+            marginTop="mt-6"
+            yAxisWidth="w-12"
+          />
+        </Card>
+        <Card>
+          <Title>Population growth rate (1951 to 2021)</Title>
+          <LineChart
+            data={lineChartdata}
+            dataKey="year"
+            categories={["Population growth rate"]}
+            colors={["blue"]}
+            valueFormatter={dataFormatter}
+            marginTop="mt-6"
+            yAxisWidth="w-10"
+          />
+        </Card>
+      </div>
+    </ThemeProvider>
   );
 }
 
